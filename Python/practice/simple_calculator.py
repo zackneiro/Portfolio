@@ -1,32 +1,55 @@
 def main():
-    x = get_int("x: ")
-    y = get_int("y: ")
-    option = input("Choose your operation: "
-                   "+, -, /, %, *, //: ")
-    operations(option, x , y)
-    return
+    x = get_int("Enter the first inetger: ")
+    y = get_int("Enter the second ingeter: ")
+    choice = input("Choose your operation: +, -, /, %, *, //: ")
+    # while user's choice is not valid, keep asking for a valid choice
+    while valid_choice(choice) == False:
+        print("Invalid choice")
+        choice = input("Choose your operation: +, -, /, %, *, //: ")
+
+    # perfom the chosen operation and display the result
+    perform_operation(choice, x, y)
+
+# function to get an integer for user, handling invalid input
+
 
 def get_int(promt):
     while True:
         try:
             return int(input(promt))
-        except:
-            ValueError
-            print("Not an integer.")
+        except ValueError:
+            print("Not an integer.Please enter a valid integer.")
 
-def operations(option, x, y):
+# function to validate the user's choice of operation
+
+
+def valid_choice(choice):
+    options = ('+', '-', '/', '*', '%', '//')
+    return choice in options
+
+# function to perfom the chosen opertion on the given integers
+
+
+def perform_operation(option, x, y):
     if option == '+':
-        print(x + y)
+        print(f"{x} + {y} = {x + y}")
     elif option == '-':
-        print(x - y)
+        print(f"{x} - {y} = {x - y}")
     elif option == '/':
-        print(x / y)
+        if y != 0:
+            print(f"{x} / {y} = {x / y}")
+        else: 
+            print("Division by zero is not allowed")
     elif option == '%':
-        print(x % y)
+        print(f"{x} % {y} = {x % y}")
     elif option == '*':
-        print(x * y)
+        print(f"{x} * {y} = {x * y}")
     elif option == '//':
-        print(x // y)
+        if y != 0:
+            print(f"{x} // {y} = {x // y}")
+        else:
+            print("Division by zero is not allowed")
 
 
-main()
+if __name__ == "__maim__":
+    main()

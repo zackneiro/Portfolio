@@ -18,11 +18,10 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt  # Assumes you have a requirements.txt file
+        pip install -r requirements.txt  # Assumes I have a requirements.txt file
 
     - name: Run script
       run: |
-        python your_script.py  # Replace with the name of your Python script
-    - name: Run tests
+        python /workspaces/Portfolio.-C-language/Python/practice/simple_calculator.py  
       run: |
-        pytest  # Assumes you have tests set up with pytest
+        pytest  # Assumes I have tests set up with pytest

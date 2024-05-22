@@ -1,5 +1,6 @@
 import os
 
+
 def main():
     """
     Main function to execute the calculator operations.
@@ -17,6 +18,7 @@ def main():
     # perfom the chosen operation and display the result
     perform_operation(choice, x, y)
     
+
 def get_int(prompt, min_value=None, max_value=None, error_message="Not an integer. Please enter a valid integer."):
     """
     Prompt the user to enter an integer within the specified range.
@@ -73,9 +75,6 @@ def perform_operation(option, x, y):
         return result
     else:
         return f"{x} {option} {y} = {result}"
-
-# Note: Update any parts of your code that call perform_operation to handle the return value.
-
 
 
 if __name__ == '__main__':

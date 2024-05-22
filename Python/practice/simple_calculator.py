@@ -21,13 +21,21 @@ def get_int(prompt, min_value=None, max_value=None, error_message="Not an intege
     """
     Prompt the user to enter an integer within the specified range.
     """
+    if os.getenv('CI', 'false').lower() == 'true':
+        # Use environment variables for CI
+        value = int(os.getenv(prompt.split()[-1].upper(), 0))
+        if min_value <= value <= max_value:
+            return value
+        else:
+            print(f"Please enter an integer between {min_value} and {max_value}.")
+            return min_value
     while True:
         try:
             value = int(input(prompt))
-            if (min_value is not None and value < min_value) or (max_value is not None and value > max_value):
-                print(f"Please enter an integer between {min_value} and {max_value}.")
-            else:
+            if min_value <= value <= max_value:
                 return value
+            else:
+                print(f"Please enter an integer between {min_value} and {max_value}.")
         except ValueError:
             print(error_message)
 
@@ -36,6 +44,9 @@ def get_operation_choice(prompt, valid_options={'+', '-', '/', '*', '%', '//'}):
     """
     Prompt the user to choose a valid operation.
     """
+    if os.getenv('CI', 'false').lower() == 'true':
+        # Use environment variables for CI
+        return os.getenv('CHOICE', '+')
     while True:
         choice = input(prompt)
         if choice in valid_options:

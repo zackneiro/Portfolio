@@ -57,24 +57,25 @@ def get_operation_choice(prompt, valid_options={'+', '-', '/', '*', '%', '//'}):
 
 def perform_operation(option, x, y):
     """
-    Perform the chosen operation on the given integers and display the result.
+    Perform the chosen operation on the given integers and return the result.
     """
     operations = {
         '+': lambda a, b: a + b,
         '-': lambda a, b: a - b,
         '*': lambda a, b: a * b,
-        '/': lambda a, b: a / b if b != 0 or a != 0 else "Division by zero is not allowed.",
-        '%': lambda a, b: a % b if b != 0 or a != 0 else "Division by zero is not allowed.",
-        '//': lambda a, b: a // b if b != 0 or a != 0 else "Division by zero is not allowed."
+        '/': lambda a, b: a / b if b != 0 else "Division by zero is not allowed",
+        '%': lambda a, b: a % b if b != 0 else "Division by zero is not allowed",
+        '//': lambda a, b: a // b if b != 0 else "Division by zero is not allowed"
     }
-    if option in operations:
-        result = operations[option](x, y)
-        if isinstance(result, str):
-            print(result)
-        else:
-            print(f"{x} {option} {y} = {result}")  # Check if result is an error message
+
+    result = operations[option](x, y)
+    if isinstance(result, str):  # Check if result is an error message
+        return result
     else:
-        print("Invalid operation")
+        return f"{x} {option} {y} = {result}"
+
+# Note: Update any parts of your code that call perform_operation to handle the return value.
+
 
 
 if __name__ == '__main__':

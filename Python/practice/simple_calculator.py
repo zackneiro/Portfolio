@@ -1,15 +1,22 @@
+import os
+
 def main():
     """
     Main function to execute the calculator operations.
     """
-    x = get_int("Enter the first integer: ", min_value=-1000000, max_value=1000000)
-    y = get_int("Enter the second integer: ", min_value=-1000000, max_value=1000000)
-    choice = get_operation_choice("Choose your operation: +, -, /, %, *, //: ")
+    if 'CI' in os.environ:
+        # Use default values if running in CI environment
+        x = int(os.getenv('X_VALUE', 0))
+        y = int(os.getenv('Y_VALUE', 0))
+        choice = os.getenv('CHOICE', '+')
+    else:
+        x = get_int("Enter the first integer: ", min_value=-1000000, max_value=1000000)
+        y = get_int("Enter the second integer: ", min_value=-1000000, max_value=1000000)
+        choice = get_operation_choice("Choose your operation: +, -, /, %, *, //: ")
 
     # perfom the chosen operation and display the result
     perform_operation(choice, x, y)
-
-
+    
 def get_int(prompt, min_value=None, max_value=None, error_message="Not an integer. Please enter a valid integer."):
     """
     Prompt the user to enter an integer within the specified range.

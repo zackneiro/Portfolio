@@ -22,6 +22,7 @@ jobs:
 
     - name: Run script
       run: |
-        python /workspaces/Portfolio.-C-language/Python/practice/simple_calculator.py  
+        python /workspaces/Portfolio.-C-language/Python/practice/simple_calculator.py 
+    - name: Run tests 
       run: |
         pytest  # Assumes I have tests set up with pytest

@@ -1,5 +1,6 @@
-from .simple_calculator import get_int
+from Python.practice.simple_calculator import get_int
 import os
+
 
 def main():
     """
@@ -18,11 +19,11 @@ def main():
 
 
 def is_even_or_odd(x, y):
-        def even_or_odd(n):
-            return "even" if n % 2 == 0 else "odd"
+    def even_or_odd(n):
+        return "even" if n % 2 == 0 else "odd"
     
-        return f"{x} is {even_or_odd(x)} and {y} is {even_or_odd(y)}"
+    return f"{x} is {even_or_odd(x)} and {y} is {even_or_odd(y)}"
             
         
 if __name__ == '__main__':
-        main()
+    main()

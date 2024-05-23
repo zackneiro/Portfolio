@@ -28,8 +28,7 @@ jobs:
 
     - name: Set PYTHONPATH
       run: |
-        echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
-
+          echo "PYTHONPATH=$(pwd)/Python" >> $GITHUB_ENV
     - name: Run script
       env:
         CI: true

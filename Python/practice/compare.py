@@ -24,11 +24,5 @@ def main():
             print("Unxpected error")
 
         
-
-
-
-
-
-
     if __name__ == '__main__':
         main()

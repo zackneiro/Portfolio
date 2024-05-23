@@ -37,7 +37,7 @@ jobs:
         Y_VALUE: ${{ matrix.script.y_value }}
         CHOICE: ${{ matrix.script.choice }}
       run: |
-        python -m Python.practice.simple_calculator
+        python ${{ matrix.script.path }}
 
     - name: Run compare script
       env:
@@ -45,7 +45,7 @@ jobs:
         INPUT1: ${{ matrix.script.input1 }}
         INPUT2: ${{ matrix.script.input2 }}
       run: |
-        python -m Python.practice.compare
+        python ${{ matrix.script.path }}
 
     - name: Run tests
       run: |

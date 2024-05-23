@@ -72,8 +72,10 @@ def perform_operation(option, x, y):
 
     result = operations[option](x, y)
     if isinstance(result, str):  # Check if result is an error message
+        print(result)
         return result
     else:
+        print(f"{x} {option} {y} = {result}")
         return f"{x} {option} {y} = {result}"
 
 

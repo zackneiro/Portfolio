@@ -11,8 +11,8 @@ def main():
         x = int(os.getenv('INPUT1', 0))
         y = int(os.getenv('INPUT2', 0))
     else:
-        x = get_int("Enter the first number: ", min_value=-1000000, max_value=1000000)
-        y = get_int("Enter the second number: ", min_value=-1000000, max_value=1000000)
+        x = get_int("Enter the first number: ")
+        y = get_int("Enter the second number: ")
 
     result = is_even_or_odd(x, y)
     print(result)

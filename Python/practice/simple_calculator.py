@@ -19,7 +19,7 @@ def main():
     perform_operation(choice, x, y)
     
 
-def get_int(prompt, min_value=None, max_value=None, error_message="Not an integer. Please enter a valid integer."):
+def get_int(prompt, min_value=-1000000, max_value=1000000, error_message="Not an integer. Please enter a valid integer."):
     """
     Prompt the user to enter an integer within the specified range.
     """

@@ -11,6 +11,7 @@ jobs:
         script: 
           - {name: simple_calculator, path: Python/practice/simple_calculator/simple_calculator.py, x_value: 5, y_value: 10, choice: '+'}
           - {name: compare, path: Python/practice/compare/compare.py, input1: 4, input2: 7}
+          - {name: factorial_calc, path: Python/practice/factorial/factorial_calc.py, input: 4}
 
     steps:
     - name: Check out the repository
@@ -31,6 +32,7 @@ jobs:
         echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
 
     - name: Run simple_calculator script
+      if: matrix.script.name == 'simple_calculator'
       env:
         CI: true
         X_VALUE: ${{ matrix.script.x_value }}
@@ -40,10 +42,19 @@ jobs:
         python ${{ matrix.script.path }}
 
     - name: Run compare script
+      if: matrix.script.name == 'compare'
       env:
         CI: true
         INPUT1: ${{ matrix.script.input1 }}
         INPUT2: ${{ matrix.script.input2 }}
+      run: |
+        python ${{ matrix.script.path }}
+
+    - name: Run factorial_calc script
+      if: matrix.script.name == 'factorial_calc'
+      env:
+        CI: true
+        INPUT: ${{ matrix.script.input }}
       run: |
         python ${{ matrix.script.path }}
 

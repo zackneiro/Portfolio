@@ -40,6 +40,8 @@ jobs:
         INPUT2: ${{ matrix.script.input2 }}
       run: |
         python ${{ matrix.script.path }}
+      run: |
+        python -m Python.practice.compare
 
     - name: Run tests
       run: |

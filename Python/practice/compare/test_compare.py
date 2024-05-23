@@ -1,5 +1,5 @@
 import pytest
-from Python.practice.compare import is_even_or_odd
+from Python.practice.compare.compare import is_even_or_odd
 
 def test_even_or_odd():
     assert is_even_or_odd(4, 7) == "4 is even and 7 is odd"

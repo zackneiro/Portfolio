@@ -1,5 +1,5 @@
 import pytest
-from Python.practice.simple_calculator import perform_operation
+from Python.practice.simple_calculator.simple_calculator import perform_operation
 
 def test_addition():
     assert perform_operation('+', 5, 3) == "5 + 3 = 8"

@@ -30,16 +30,20 @@ jobs:
       run: |
         echo "PYTHONPATH=$(pwd)" >> $GITHUB_ENV
 
-    - name: Run script
+    - name: Run simple_calculator script
       env:
         CI: true
         X_VALUE: ${{ matrix.script.x_value }}
         Y_VALUE: ${{ matrix.script.y_value }}
         CHOICE: ${{ matrix.script.choice }}
+      run: |
+        python -m Python.practice.simple_calculator
+
+    - name: Run compare script
+      env:
+        CI: true
         INPUT1: ${{ matrix.script.input1 }}
         INPUT2: ${{ matrix.script.input2 }}
-      run: |
-        python ${{ matrix.script.path }}
       run: |
         python -m Python.practice.compare
 

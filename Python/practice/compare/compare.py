@@ -1,4 +1,4 @@
-from Python.practice.simple_calculator import get_int
+from Python.practice.simple_calculator.simple_calculator import get_int
 import os
 
 

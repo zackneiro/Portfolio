@@ -9,8 +9,8 @@ jobs:
     strategy:
       matrix:
         script: 
-          - {name: simple_calculator, path: Python/practice/simple_calculator.py, x_value: 5, y_value: 10, choice: '+'}
-          - {name: compare, path: Python/practice/compare.py, input1: 4, input2: 7}
+          - {name: simple_calculator, path: Python/practice/simple_calculator/simple_calculator.py, x_value: 5, y_value: 10, choice: '+'}
+          - {name: compare, path: Python/practice/compare/compare.py, input1: 4, input2: 7}
 
     steps:
     - name: Check out the repository

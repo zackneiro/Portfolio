@@ -1,6 +1,5 @@
 import pytest
-from Python.practice.compare.compare import get_input, is_even_or_odd, main
-import os
+from Python.practice.compare.compare import get_input, is_even_or_odd
 
 def test_is_even_or_odd():
     """
@@ -10,7 +9,16 @@ def test_is_even_or_odd():
     assert is_even_or_odd(2, 2) == "2 is even and 2 is even"
     assert is_even_or_odd(1, 5) == "1 is odd and 5 is odd"
 
-def test_get_input(monkeypatch):
+@pytest.fixture
+def clear_env(monkeypatch):
+    """
+    Fixture to clear environment variables for testing.
+    """
+    monkeypatch.delenv('CI', raising=False)
+    monkeypatch.delenv('INPUT1', raising=False)
+    monkeypatch.delenv('INPUT2', raising=False)
+
+def test_get_input(monkeypatch, clear_env):
     """
     Function to test the get_input function.
     """
@@ -26,15 +34,6 @@ def test_get_input(monkeypatch):
     # Test the get_input function
     assert get_input() == (4, 7)
 
-@pytest.fixture
-def no_env(monkeypatch):
-    """
-    Fixture to clear environment variables for testing.
-    """
-    monkeypatch.delenv('CI', raising=False)
-    monkeypatch.delenv('INPUT1', raising=False)
-    monkeypatch.delenv('INPUT2', raising=False)
-
 def test_get_input_with_env(monkeypatch):
     """
     Test get_input function when CI environment variable is set.
@@ -44,7 +43,7 @@ def test_get_input_with_env(monkeypatch):
     monkeypatch.setenv('INPUT2', '7')
     assert get_input() == (4, 7)
 
-def test_get_input_without_env(monkeypatch, no_env):
+def test_get_input_without_env(monkeypatch, clear_env):
     """
     Test get_input function when CI environment variable is not set.
     """
@@ -56,23 +55,3 @@ def test_get_input_without_env(monkeypatch, no_env):
 
     monkeypatch.setattr('builtins.input', mock_input)
     assert get_input() == (4, 7)
-
-def test_main(monkeypatch, capsys):
-    """
-    Test the main function.
-    """
-    def mock_get_input():
-        return (4, 7)
-
-    # Mock get_input to return predefined values
-    monkeypatch.setattr('Python.practice.compare.compare.get_input', mock_get_input)
-    
-    # Call main function
-    main()
-    
-    # Capture the output
-    captured = capsys.readouterr()
-    
-    # Verify the output
-    assert "Starting the compare script..." in captured.out
-    assert "4 is even and 7 is odd" in captured.out

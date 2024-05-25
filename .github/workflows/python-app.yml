@@ -63,5 +63,5 @@ jobs:
     - name: Run tests
       run: |
         pytest Python/practice/compare/test_compare.py
-        pytest Python/practice/factorial/test_factorial.py
+        pytest Python/practice/factorial/factorial_test.py
         pytest Python/practice/simple_calculator/test_simple_calculator.py

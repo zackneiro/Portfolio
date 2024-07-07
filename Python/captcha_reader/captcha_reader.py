@@ -1,22 +1,25 @@
-import os
+import os, time
 import cv2
 import matplotlib.pyplot as plt
 import numpy as np
 
 def main():
-    print("Current working directory:", os.getcwd())
-    print("Files in the current directory:", os.listdir())
+    # Sart point of timing
+    start_time = time.perf_counter()
 
-    # Correct image path
+    # read file to and tor it in'img'
     img = cv2.imread('Python/captcha_reader/25egp.png')
 
+
+    # Check that image read correctly
     if img is None:
         print(f"Error: Image not loaded. Check the file path: {'Python/captcha_reader/25egp.png'}")
         return
-
-    img = get_grayscale(img)
-    img = noise_removal(img)
+    
+    # Preprocess functions for an easier symbol detection
+    img = get_grayscale(img) 
     img = thresholding(img)
+
 
     # Save the processed image
     processed_image_path = 'Python/captcha_reader/processed_image.png'
@@ -27,6 +30,12 @@ def main():
     plt.imshow(img, cmap='gray')
     plt.title('Processed Image')
     plt.show()
+
+    # END timimng and counting the total execution time of run
+    end_time  = time.perf_counter()
+    execution_time = end_time - start_time
+    print(f"Execution time: {execution_time:.8f} seconds")
+
 
 # Get grayscale image
 def get_grayscale(image):

@@ -3,7 +3,7 @@ name: Python application
 on: [push, pull_request]
 
 permissions:
-  contents: read
+  contents: write  # This grants read and write access to the repository contents
 
 jobs:
   build:

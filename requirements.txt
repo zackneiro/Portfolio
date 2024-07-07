@@ -5,3 +5,4 @@ pytest
 cs50
 pytesseract
 opencv-python
+matplotlib

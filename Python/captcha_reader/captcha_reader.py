@@ -34,16 +34,37 @@ POST PROCESSING
 
 END
 """
-import pytesseract, cv2
+import pytesseract, cv2, os
 import matplotlib.pyplot as plt
 import numpy as np
 
 
 def main():
+
+   # Print the current working directory
+    print("Current working directory:", os.getcwd())
+
+    # List files in the current directory
+    print("Files in the current directory:", os.listdir())
+ 
     img = cv2.imread('25egp.png')
+
+    # Checks if the image is loaded correctly
+    if img is None:
+        print("Error: Image not loaded. Check the file path.")
+    else:
+        print("Image loaded successfully.")
+
     img = get_grayscale(img)
     img = noise_removal(img)
     img = thresholding(img)
+
+
+    # Save the processed image
+    processed_image_path = 'processed_image.png'
+    cv2.imwrite(processed_image_path, img)
+    print(f"Processed image saved as {processed_image_path}")
+
 
     # Display the processed image for veritification
     plt.imshow(img, cmap='gray')
@@ -62,7 +83,6 @@ def noise_removal(image):
 # thresholding
 def thresholding(image):
     return cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
-
 
 
 if __name__ == "__main__":

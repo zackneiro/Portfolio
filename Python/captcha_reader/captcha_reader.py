@@ -5,11 +5,11 @@ import pytesseract
 
 
 def main():
-    # read file and store it in 'img'
-    img = load_image()
-
     # Sart point of timing
     start_time = time.perf_counter()
+
+    # read file to and store it in'img'
+    img = load_image()
 
     # Preprocess functions for an easier symbol detection
     img = preprocess_image(img)
@@ -22,14 +22,9 @@ def main():
 
     # END timimng and counting the total execution time of run
     end_time = time.perf_counter()
+
     count_execution_time(start_time, end_time)
 
-
-def get_image_path():
-   try:
-    return input("Please, prvoide code with a path to the image: ")
-   except:
-       ValueError
 
 def preprocess_image(image):
     # Apply thresholding
@@ -52,12 +47,11 @@ def print_text(image):
 
 
 def load_image():
-    image_path = get_image_path()
-    img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+    img = cv2.imread('Python/captcha_reader/Images/1.png', cv2.IMREAD_GRAYSCALE)
 
     # Check that image read correctly
     if img is None:
-        print(f"Error: Image not loaded. Check the file path: {image_path}")
+        print(f"Error: Image not loaded. Check the file path: {'Python/captcha_reader/Images/1.png'}")
         exit(1)
     else:
         return img

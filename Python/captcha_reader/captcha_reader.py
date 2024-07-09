@@ -7,6 +7,8 @@ import pytesseract
 def main():
     # Sart point of timing
     start_time = time.perf_counter()
+    print(f"{start_time:.8f}")
+    
 
     # read file to and store it in'img'
     img = load_image()
@@ -22,6 +24,7 @@ def main():
 
     # END timimng and counting the total execution time of run
     end_time = time.perf_counter()
+    print(f"{end_time:.8f}")
 
     count_execution_time(start_time, end_time)
 
@@ -62,7 +65,11 @@ def save_processed_image(image):
     
 
 def count_execution_time(start_time, end_time):
-    print(f"Execution time: {end_time - start_time:.8f} seconds")
+    execution_time = end_time - start_time
+    result = f"Execution time: {execution_time:.8f} seconds"
+    print(result)
+    return result
+    
 
 
 if __name__ == "__main__":

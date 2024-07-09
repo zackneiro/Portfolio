@@ -84,3 +84,4 @@ jobs:
         pytest Python/practice/compare/test_compare.py
         pytest Python/practice/factorial/factorial_test.py
         pytest Python/practice/simple_calculator/test_simple_calculator.py
+        pytest Python/captcha_reader/test_capthca_reader.py

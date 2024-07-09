@@ -1,5 +1,5 @@
 import pytest
-from Python.practice.compare.compare import get_input, is_even_or_odd
+from compare.compare import get_input, is_even_or_odd
 
 def test_is_even_or_odd():
     """

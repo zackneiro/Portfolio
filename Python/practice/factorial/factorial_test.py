@@ -1,5 +1,5 @@
 import pytest
-from Python.practice.factorial.factorial_calc import factorial_calculation
+from factorial.factorial_calc import factorial_calculation
 
 
 @pytest.mark.parametrize('x, expected', [(4, 24), (5, 120), (10, 3628800), (0, 1), (-1, 1)])

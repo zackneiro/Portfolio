@@ -11,7 +11,8 @@ def main():
     
 
     # read file to and store it in'img'
-    img = load_image()
+    path = "Python/captcha_reader/Images/3.png"
+    img = load_image(path)
 
     # Preprocess functions for an easier symbol detection
     img = preprocess_image(img)
@@ -34,7 +35,7 @@ def preprocess_image(image):
     _, thresh = cv2.threshold(image, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     
     # Denoise
-    denoised = cv2.medianBlur(thresh, 3)
+    denoised = cv2.medianBlur(thresh, 1)
     
     # Dilation and erosion to remove noise
     kernel = np.ones((1, 1), np.uint8)
@@ -46,15 +47,17 @@ def preprocess_image(image):
 
 def print_text(image):
     custom_config = r'--oem 3 --psm 6 -l eng'
-    print(pytesseract.image_to_string(image, config=custom_config))
+    text = pytesseract.image_to_string(image, config=custom_config)
+    print(text)
+    return text
 
 
-def load_image():
-    img = cv2.imread('Python/captcha_reader/Images/1.png', cv2.IMREAD_GRAYSCALE)
+def load_image(path):
+    img = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
 
     # Check that image read correctly
     if img is None:
-        print(f"Error: Image not loaded. Check the file path: {'Python/captcha_reader/Images/1.png'}")
+        print(f"Error: Image not loaded. Check the file path: {path}")
         exit(1)
     else:
         return img
@@ -62,6 +65,7 @@ def load_image():
 
 def save_processed_image(image):
     print("Image write:", "Succedded" if cv2.imwrite('Python/captcha_reader/processed_image.png', image) else "Failed")
+    return image
     
 
 def count_execution_time(start_time, end_time):

@@ -1,6 +1,6 @@
 import pytest
 import re
-from captcha_reader import preprocess_image, print_text, load_image, save_processed_image, count_execution_time
+from .captcha_reader import preprocess_image, print_text, load_image, save_processed_image, count_execution_time
 
 def test_count_execution_time():
     assert count_execution_time(3280.60102784, 3282.509321012) == "Execution time: 1.90829317 seconds"

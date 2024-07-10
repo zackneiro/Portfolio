@@ -2,6 +2,7 @@ import time
 import cv2
 import numpy as np
 import pytesseract
+import torch
 
 
 def main():
@@ -57,8 +58,9 @@ def load_image(path):
 
     # Check that image read correctly
     if img is None:
-        print(f"Error: Image not loaded. Check the file path: {path}")
-        exit(1)
+        result = None
+        print(f"Error raised: check the file path {path}")
+        return result
     else:
         return img
     
@@ -73,7 +75,7 @@ def count_execution_time(start_time, end_time):
     result = f"Execution time: {execution_time:.8f} seconds"
     print(result)
     return result
-    
+
 
 
 if __name__ == "__main__":

@@ -10,9 +10,9 @@ from .captcha_reader import preprocess_image, print_text, load_image, save_proce
 def test_main():
 
     # Preparing an enviroment
-    input_image_path = "Images/1.png"
+    input_image_path = "Python/captcha_reader/Images/1.png"
     img = load_image(input_image_path)
-    processed_image = "processed_image.png"
+    processed_image = "Python/captcha_reader/processed_image.png"
 
     # Ensure path exists
     assert os.path.exists(input_image_path), "Input image does not exist"
@@ -37,7 +37,7 @@ def test_count_execution_time():
     assert count_execution_time(3360.47498972, 3361.72458960) == "Execution time: 1.24959988 seconds"
 
 def test_preprocess_image():
-    img = load_image("Images/1.png")
+    img = load_image("Python/captcha_reader/Images/1.png")
     processed_img = preprocess_image(img)
     assert processed_img is not None
     assert processed_img.shape == img.shape
@@ -45,7 +45,7 @@ def test_preprocess_image():
     assert saved_image.shape == processed_img.shape
 
 def test_save_processed_image():
-    img = load_image("Images/1.png")
+    img = load_image("Python/captcha_reader/Images/1.png")
     processed_img = preprocess_image(img)
     assert processed_img is not None
     assert processed_img.shape == img.shape
@@ -54,7 +54,7 @@ def test_save_processed_image():
 
 
 def test_load_image_correct_path():
-    result = cv2.imread("Images/1.png", cv2.IMREAD_GRAYSCALE)
+    result = cv2.imread("Python/captcha_reader/Images/1.png", cv2.IMREAD_GRAYSCALE)
 
     assert result is not None
 
@@ -66,13 +66,13 @@ def test_load_image_correct_path():
     
 def test_load_image_invalid_path(capfd):
 
-   result = load_image("Images/non_existent_image.png")
+   result = load_image("Python/captcha_reader/Images/non_existent_image.png")
 
    out, err = capfd.readouterr()
 
    assert result is None
 
-   assert out.strip() == "Error raised: check the file path Images/non_existent_image.png"
+   assert out.strip() == "Error raised: check the file path Python/captcha_reader/Images/non_existent_image.png"
 
 def test_thresholding():
     # Create a sample grayscale image (e.g., 10x10 pixels with gradient values)
@@ -89,7 +89,7 @@ def test_thresholding():
 
 
 def test_denoise_image():
-    img = cv2.imread("Images/3.png", cv2.IMREAD_GRAYSCALE)
+    img = cv2.imread("Python/captcha_reader/Images/3.png", cv2.IMREAD_GRAYSCALE)
 
     assert img is not None, "Image not loaded"
 
@@ -126,7 +126,7 @@ def clean_text(text):
     return text
 
 def test_print_text():
-    img = load_image("Images/1.png")
+    img = load_image("Python/captcha_reader/Images/1.png")
     processed_img = preprocess_image(img)
     result = print_text(processed_img)
     

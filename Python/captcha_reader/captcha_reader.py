@@ -11,7 +11,7 @@ def main():
     
 
     # read file to and store it in'img'
-    path = "Python/captcha_reader/Images/3.png"
+    path = "Images/3.png"
     img = load_image(path)
 
     # Preprocess functions for an easier symbol detection
@@ -65,7 +65,7 @@ def load_image(path):
     
 
 def save_processed_image(image):
-    print("Image write:", "Succedded" if cv2.imwrite('Python/captcha_reader/processed_image.png', image) else "Failed")
+    print("Image write:", "Succedded" if cv2.imwrite('processed_image.png', image) else "Failed")
     return image
     
 

@@ -7,3 +7,6 @@ pytesseract
 opencv-python
 matplotlib
 torch
+flask
+playwright
+validators

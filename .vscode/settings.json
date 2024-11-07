@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "random": "c",
+        "ratio": "c",
+        "functional": "c",
+        "string": "c",
+        "unistd.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}

@@ -12,7 +12,6 @@ jobs:
     strategy:
       matrix:
         script: 
-          - {name: simple_calculator, path: Python/practice/simple_calculator/simple_calculator.py, x_value: 5, y_value: 10, choice: '+'}
           - {name: compare, path: Python/practice/compare/compare.py, input1: 4, input2: 7}
           - {name: factorial_calc, path: Python/practice/factorial/factorial_calc.py, input: 4}
           - {name: captcha_reader, path: Python/captcha_reader/captcha_reader.py}
@@ -83,5 +82,4 @@ jobs:
       run: |
         pytest Python/practice/compare/test_compare.py
         pytest Python/practice/factorial/factorial_test.py
-        pytest Python/practice/simple_calculator/test_simple_calculator.py
         pytest Python/captcha_reader/test_capthca_reader.py

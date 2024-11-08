@@ -30,7 +30,17 @@ from numpy import average as avg
 history = {}
 def main():
     """
-    Calling all functions from here
+    Entry point for the calculator program, whic prompts user to select
+    an option and directs them to the corresponding functionality
+
+    Options:
+        1 - Perfrom basic calculations between two numbers.
+        2 - Process a list of numbers for advanced calculations.
+        3 - Display history of calculations.
+        4 - Exit the program.
+
+    Returns: 
+        None
     """
     choice = 0
     while choice != 4:
@@ -42,7 +52,7 @@ def main():
             case 2:
                 proceed_data() # program proceeds to data process block
             case 3:
-                show_history()  # program will print the current history of operations
+                history_work()  # program will print the current history of operations
             case 4:
                 print("Thank you for using our service and goodbye!")
                 exit() # will exit the program
@@ -50,9 +60,8 @@ def main():
     
 
 def greeting() -> None:
-    """
-    This block prints the greet message.
-    """
+    """Print a welcome message to the user."""
+
     print("\nHi and welcome to basic calculator!",
           "Here are the operations I can perforom: ",
           " 1 - Basic calculations between two numbers.",
@@ -63,7 +72,10 @@ def greeting() -> None:
 
 def ask_for_choice() -> int:
     """
-    This block gets the main menu choice and validate it.
+    Asks user for a choice to choose an option from the main().
+
+    Returns: 
+        int: A valid choice (1-4) representing the selected menu option.
     """
     choice = 0
     choice = get_number("What'd be your choice? Please, enter from 1 to 4: ")
@@ -71,12 +83,15 @@ def ask_for_choice() -> int:
         choice = get_number("Please, enter a valid integer between 1 and 4: ")
     return choice
 
-def get_number(promt : str ="") -> int:
+def get_number(promt : str ="") -> float:
     """
-    Fucntion to gets a valid interger from user.
+    Gets a valid float number from the user.
     
     Args:
-    text : str ="" Optionally can accept a string
+        prompt (str): The custom message displayed to the user.
+    
+    Returns:
+        float: A valid numeric input prvided by the user
     """
     print(promt, end="")
     while True:
@@ -88,10 +103,13 @@ def get_number(promt : str ="") -> int:
 
 def get_string(*promt, separ=" ") -> str:
     """
-    Function gets a valid string from user
+    Gets a valid string from user.
 
     Args: 
-    promt : str . Accepts an optional argument strint, standart =""
+        promt (tuple[str]): the tuple of custom strings, by default is " " 
+
+    Returns:
+         str: valid string
     """
     while True:
         try:
@@ -102,12 +120,17 @@ def get_string(*promt, separ=" ") -> str:
             print("Please, write a valid string: ", end="")
 
 
-def show_history(promt : str ="", in_history_assigning : int = 0) -> None:
+def history_work(promt : str ="", in_history_assigning : int = 0) -> None:
     """
-    Shows history of calculations
+    Shows history of calculations.
 
     Args: 
-    promt : str - accepts string as custom message from user. Standard - "" 
+        promt (str): The custom message displayed to the user.
+        in_history_assigning (int): indicator shows that we are 
+            in history value assigning (0 by default)
+
+    Returns:
+        None
     """
     if len(history) == 0: 
         print("\nThe history is empty.")
@@ -122,8 +145,13 @@ def show_history(promt : str ="", in_history_assigning : int = 0) -> None:
 
 def basic_calculation() -> None:
     """
-    Block that begins the basic calculations
-    and allows to follow the logic of block
+    Handles basic arithmetic calculations between two numbers.
+    
+    Prompts the user to select or enter two numbers and an operation.
+    The result of the operation is displayed and saved to history.
+
+    Returns:
+        None.
     """
     number_1 = assign_value_int("Do you want to use one of the last results as",
                                 "the value of first number? Write \"yes\" or \"no\": ")
@@ -136,15 +164,8 @@ def basic_calculation() -> None:
 
 def proceed_data() -> None:
     """
-    This block should return the result from number's containers
-    I don't know the amount of coming numbers
-    So, I will use variable-length argument *numbers
-    Then I will ask the user for an opertaion choice,
-    I will use the same function of choosing operation, 
-    But I will add there one more choice
-    Then I will define another function, where I already will proceed actcual
-    operation,
-    Then I will store result and append it to history.
+    Handles the data proceed.
+    Same as basic_calcualtions allows to follow the logic of this option.
     """
     print("\nThis block is data proccessing")
     operation = ask_choice_operation(choosing_opeartion=1)
@@ -155,6 +176,15 @@ def proceed_data() -> None:
 
 
 def get_tuple_int(promt : str) -> tuple[int]:
+    """
+    Gets tuple of integers.
+
+    Args:
+        promt (str): the custom promt.
+    
+    Returns: 
+        tuple (int): tuple of integers.
+    """
     while True:
         try:
             numbers = get_string(promt)
@@ -164,6 +194,18 @@ def get_tuple_int(promt : str) -> tuple[int]:
 
 
 def ask_choice_operation(choosing_opeartion : int = 0) -> str:
+    """
+    Block that validates the user choice of operations
+    Depending on the block he is current in.
+
+    Args:
+        choosing_operation (int): the integer that 
+        by default is 0 if functon called from basic_calculation(),
+        has value 1 is called from proceed_data(). 
+    
+    Returns:
+        str: valid operation
+    """
 
     valid_operations_basic={"+", "%", "/", "-", "*", "//"}
     valid_operations_data={"+", "avg", "min", "max"}
@@ -201,6 +243,19 @@ def ask_choice_operation(choosing_opeartion : int = 0) -> str:
 
 
 def perform_operation_basic(operation : str, n1 : int, n2 : int) -> None:
+    """
+    Performs basic operations between two numbers.
+
+    Args:
+        operation (str): valid operation.
+        n1 (int): first number ín operation.
+        n2 (int): second number in operation. 
+
+    Returns:
+        None, but it appends the result and operation itself
+        to global variable "hitsory", which stores the result during the work
+        as key-value pair in set.
+    """
 
     perform = {"+" : lambda n1, n2 : n1 + n2,
                "-" : lambda n1, n2 : n1 - n2,
@@ -226,6 +281,18 @@ def perform_operation_basic(operation : str, n1 : int, n2 : int) -> None:
 
 
 def perform_operation_data(operation : str, numbers : tuple[int]) -> None:
+    """
+    Performs data process opertaions using tuple of numbers
+
+    Args:
+        operation (str): valid operation
+        numbers (tuple[int]): tuple of integers
+
+    Returns:
+        Nothing, but it appends the result and operation itself
+        to global variable "hitsory", which stores result during work
+        as a key-value pair in set
+    """
 
     print("This is operation_data_perform!")
     perform = {"+" : sum(numbers),
@@ -244,10 +311,16 @@ def perform_operation_data(operation : str, numbers : tuple[int]) -> None:
 
 def assign_value_int(*promt : str) -> int:
     """
-    Function assigns value to integer in basic_calculation block
+    Gets an integer depending on user choice.
+    It can append history value if user wants that and history is not empty,
+    by calling assign_history_value().
+    Otherwise it will call get_number() and assign custom value.
 
-    Args: 
-    promt : str - accepts a cutsom string from user, standard = ""
+    Args:
+        *promt (str): The tuple of strings.
+    
+    Returns:
+        int : the valid integer or history value depending on user.
     """
     choice = 0
     choice = yes_or_no_chocie(*promt)
@@ -259,17 +332,26 @@ def assign_value_int(*promt : str) -> int:
 def assign_history_value() -> int:
     """
     Assigns history value to the variable.
-    History value is one of the result in during previous calculations 
+
+    History value is one of the result in during previous calculations.
+    If history is empty, it will ask user to enter a valid integer.
+    If history is not empty, but has one item, then it assigns it automatically.
+    Otherwise it will diplay history, asks user to enter the key e.g. '1 + 1'
+    and program will assign result of that historical operation.
+
+    Returns:
+        int: a valid integer from the history of calculations.
+
     """
     if len(history) == 0:
         number = 0
         number = get_number("History is empty, please enter interger yourself: ")
         return number
     elif len(history) == 1:
-        show_history("This is a current history:", 1)
+        history_work("This is a current history:", 1)
         return next(iter(history.values()))
     else:
-        show_history("This is a current history:", 1)
+        history_work("This is a current history:", 1)
         choice = get_string("Please enter a valid \
                             operation from history (e.g. '1 + 1')")
         while choice not in history.keys():
@@ -279,9 +361,14 @@ def assign_history_value() -> int:
 
 def yes_or_no_chocie(*promt : str) -> int:
     """
-    Returns user's choice depending on user's input
-    yes returns 1
-    no returns 2
+    Returns user's choice depending on user's input.
+
+    Args:
+        *promt (tuple[str]): custom promt treated as a tuple of strings
+    
+    Returns:
+        int (1): if user entered 'yes'
+        int (2): if user entered 'no'
     """
     answers = ("yes", "no")
     answer = get_string(*promt)

@@ -81,25 +81,61 @@ def get_choice_menu(*prompt: tuple[str]) -> int:
         
 
 
-
-def check_validity():
-    """
-    This block runs program that ensures all product names are strings,
-    prices are postive floats, and stock is a non-negative integer.
-    """
-
-
-def add_new_prdouct():
+def add_new_prdouct() -> None:
     """
     This block runs program that adds new valid product.
+    How I will add new product?
+    I will ask for product name, price, stock? and then validate them one by one? 
+    Sounds good. And if everything is fine, then add it.
     """
+    price: float = 0.0
+    stock: int = 0
+
+    product_name = get_product_name()
+    while price <= 0.0:
+        price = get_price()
+    while stock <= 0:
+        stock = get_stock_number()
+
+    inventory.update({product_name : {"price" : price, "stock" : stock}})
 
 
-def calculate_total_stock_value():
+def get_product_name() -> str:
+    """Gets the valid product name."""
+
+    product_name: str = input("Please, enter name product: ")
+    while not product_name:
+        product_name = input(input("Please, enter name product: "))
+    return product_name
+
+
+def get_price() -> float:
+    """Gets valid price."""
+    while True:
+        try :
+            return float(input(
+                "Please, enter price of the product (valid, positive float): "
+            ))
+        except ValueError:
+            print("Please, enter a valid, positive float number.")
+
+
+def get_stock_number() -> int:
+    """Gets valid number of stock."""
+    while True:
+        try :
+            return int(input(
+                "Please, enter amount of product on stock (valid positive integer): "
+            ))
+        except ValueError:
+            print("Please, enter a valid, postive integer.")
+
+
+def calculate_total_stock_value() -> int:
     """
     This block runs program that calculate total stock value.
     """
-
+    print(inventory["apple"]["stock"])
 
 def find_low_stock():
     """
@@ -111,6 +147,11 @@ def generate_summary():
     """
     This block runs program that generates summary of the inventory.
     """
+    summary = {"total value" : 0,
+               "low_stock_prodcuts:" : 0}
+    
+    summary['total value'] = calculate_total_stock_value()
+
 
 
 main()

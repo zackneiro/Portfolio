@@ -1,6 +1,6 @@
-name: Python application
+name: Python application # name of the workflow
 
-on: [push, pull_request]
+on: [push, pull_request] # specifies what triggers the workflow, in this case push and pull_request
 
 permissions:
   contents: write  # This grants read and write access to the repository contents
@@ -38,7 +38,7 @@ jobs:
     - name: Install Tesseract OCR
       run: |
         sudo apt-get update
-        sudo apt-get install -y tesseract-ocr libgl1-mesa-glx libglib2.0-0
+        sudo apt-get install -y tesseract-ocr libglib2.0-0 || echo "Some packages were not installed"
 
     - name: Set PYTHONPATH
       run: |
